@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "858588855184",
+    "project_id": "chikengame-d737d",
+    "storage_bucket": "chikengame-d737d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858588855184:android:818f5bcc1e0657119a9115",
+        "android_client_info": {
+          "package_name": "com.odyssey.chiken"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8558WUltY1om0cqAhswAfRjQyuLHiq5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
