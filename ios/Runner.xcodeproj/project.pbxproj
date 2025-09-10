@@ -220,6 +220,8 @@
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					331C8080294A63A400263BE5 = {
+				DevelopmentTeam = GTR45N5GLH;
+
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = 97C146ED1CF9000F007C117D;
 					};
@@ -482,6 +484,10 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			
+				CODE_SIGN_STYLE = Automatic;
+			
+				DEVELOPMENT_TEAM = GTR45N5GLH;
 			};
 			name = Profile;
 		};
@@ -494,12 +500,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.odyssey.chiken.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.odyssey.chiken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
+			
+				DEVELOPMENT_TEAM = GTR45N5GLH;
 			};
 			name = Debug;
 		};
@@ -512,10 +520,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.odyssey.chiken.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.odyssey.chiken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
+			
+				DEVELOPMENT_TEAM = GTR45N5GLH;
 			};
 			name = Release;
 		};
@@ -528,10 +538,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.odyssey.chiken.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.odyssey.chiken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
+			
+				DEVELOPMENT_TEAM = GTR45N5GLH;
 			};
 			name = Profile;
 		};
@@ -665,6 +677,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			
+				CODE_SIGN_STYLE = Automatic;
+			
+				DEVELOPMENT_TEAM = GTR45N5GLH;
 			};
 			name = Debug;
 		};
@@ -686,6 +702,10 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			
+				CODE_SIGN_STYLE = Automatic;
+			
+				DEVELOPMENT_TEAM = GTR45N5GLH;
 			};
 			name = Release;
 		};
