@@ -25,5 +25,5 @@ class AppData {
     ),
   ];
 
-  static const String privacyLink = '';
+  static const String privacyLink = 'https://auschicks.com/privacy-policy.html';
 }
