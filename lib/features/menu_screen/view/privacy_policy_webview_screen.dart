@@ -25,17 +25,22 @@ class _PrivacyPolicyWebViewScreenState extends State<PrivacyPolicyWebViewScreen>
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {
+            print('WebView: Page started loading: $url');
             setState(() {
               _isLoading = true;
             });
           },
           onPageFinished: (String url) {
+            print('WebView: Page finished loading: $url');
             setState(() {
               _isLoading = false;
             });
           },
           onWebResourceError: (WebResourceError error) {
-            // Handle WebView error silently
+            print('WebView error: ${error.description} (Code: ${error.errorCode})');
+            setState(() {
+              _isLoading = false;
+            });
           },
         ),
       )
