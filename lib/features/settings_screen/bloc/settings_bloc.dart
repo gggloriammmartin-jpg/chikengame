@@ -19,14 +19,18 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<PlayerStateChanged>(_onPlayerStateChanged);
     on<ErrorOccurred>(_onErrorOccurred);
 
-    // Слушаем изменения состояния плеера
-    _musicService.player.onPlayerStateChanged.listen((playerState) {
-      final isPlaying = playerState == PlayerState.playing;
-      print('Player state changed: $playerState, isPlaying: $isPlaying');
-      if (state.isPlaying != isPlaying) {
-        add(PlayerStateChanged(isPlaying));
-      }
-    });
+    // Безопасно слушаем изменения состояния плеера
+    try {
+      _musicService.player.onPlayerStateChanged.listen((playerState) {
+        final isPlaying = playerState == PlayerState.playing;
+        print('Player state changed: $playerState, isPlaying: $isPlaying');
+        if (state.isPlaying != isPlaying) {
+          add(PlayerStateChanged(isPlaying));
+        }
+      });
+    } catch (e) {
+      print('Failed to setup player state listener: $e');
+    }
   }
 
   Future<void> _onInitializeMusic(

@@ -15,9 +15,16 @@ void main() async {
   runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
+      
+      try {
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
+      } catch (e) {
+        developer.log('Firebase initialization failed: $e');
+        // Продолжаем работу без Firebase
+      }
+      
       runApp(const MyApp());
     },
     (error, stackTrace) {
@@ -36,7 +43,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<GameBloc>(create: (context) => GameBloc()),
         BlocProvider<SettingsBloc>(
-          create: (context) => SettingsBloc()..add(InitializeMusic()),
+          create: (context) => SettingsBloc(),
         ),
       ],
       child: MaterialApp(
@@ -45,6 +52,24 @@ class MyApp extends StatelessWidget {
         home: const SplashScreen(),
         routes: {
           '/menu': (context) => const MenuScreen(),
+        },
+        builder: (context, widget) {
+          // Дополнительная обработка ошибок на уровне всего приложения
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return Material(
+              child: Container(
+                color: Colors.red,
+                child: Center(
+                  child: Text(
+                    'Произошла ошибка!\n${errorDetails.exception}',
+                    style: const TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            );
+          };
+          return widget ?? const SizedBox();
         },
       ),
     );

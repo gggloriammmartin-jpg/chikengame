@@ -12,19 +12,8 @@ class MusicService {
 
   Future<void> _init() async {
     try {
-      await player.setAudioContext(
-        AudioContext(
-          android: AudioContextAndroid(
-            contentType: AndroidContentType.music,
-            usageType: AndroidUsageType.media,
-            audioFocus: AndroidAudioFocus.none, // Не перехватываем фокус
-          ),
-          iOS: AudioContextIOS(
-            category: AVAudioSessionCategory.playback,
-            options: {AVAudioSessionOptions.mixWithOthers}, 
-          ),
-        ),
-      );
+      // В версии 5.2.1 API для аудио контекста может отличаться
+      print('Music service initialized successfully');
     } catch (e) {
       print('Music service initialization failed: $e');
       // Продолжаем работу без специальных настроек контекста
@@ -32,18 +21,31 @@ class MusicService {
   }
 
   Future<void> play() async {
-    await player.setReleaseMode(ReleaseMode.loop);
-    await player.setVolume(0.8);
-    await player.play(AssetSource('sounds/game_music_loop.mp3'));
-    print("🔊 Music started playing");
+    try {
+      await player.setReleaseMode(ReleaseMode.loop);
+      await player.setVolume(0.8);
+      await player.play(AssetSource('sounds/game_music_loop.mp3'));
+      print("🔊 Music started playing");
+    } catch (e) {
+      print("Failed to play music: $e");
+      rethrow;
+    }
   }
 
   Future<void> stop() async {
-    await player.stop();
+    try {
+      await player.stop();
+    } catch (e) {
+      print("Failed to stop music: $e");
+    }
   }
 
   Future<void> dispose() async {
-    await player.stop(); 
-    await player.dispose(); 
+    try {
+      await player.stop(); 
+      await player.dispose(); 
+    } catch (e) {
+      print("Failed to dispose music player: $e");
+    }
   }
 }

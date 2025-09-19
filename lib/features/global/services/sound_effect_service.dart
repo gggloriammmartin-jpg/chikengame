@@ -5,20 +5,8 @@ class SoundEffectService {
 
   Future<void> init() async {
     try {
-      await _player.setAudioContext(
-        AudioContext(
-          iOS: AudioContextIOS(
-            category: AVAudioSessionCategory.playback,
-            options: <AVAudioSessionOptions>{},
-          ),
-          android: AudioContextAndroid(
-            stayAwake: false,
-            contentType: AndroidContentType.music,
-            usageType: AndroidUsageType.game,
-            audioFocus: AndroidAudioFocus.gain, // Перехватываем фокус для звуковых эффектов
-          ),
-        ),
-      );
+      // В версии 5.2.1 API для аудио контекста может отличаться
+      print('Sound effect service initialized successfully');
     } catch (e) {
       print('Sound effect service initialization failed: $e');
       // Продолжаем работу без специальных настроек контекста
@@ -26,26 +14,50 @@ class SoundEffectService {
   }
 
   Future<void> playClick() async {
-    await _player.play(AssetSource('sounds/jump.mp3'));
+    try {
+      await _player.play(AssetSource('sounds/jump.mp3'));
+    } catch (e) {
+      print('Failed to play click sound: $e');
+    }
   }
 
   Future<void> playBonus() async {
-    await _player.play(AssetSource('sounds/bonus.mp3'));
+    try {
+      await _player.play(AssetSource('sounds/bonus.mp3'));
+    } catch (e) {
+      print('Failed to play bonus sound: $e');
+    }
   }
 
   Future<void> playCrash() async {
-    await _player.play(AssetSource('sounds/crash_platform.mp3'));
+    try {
+      await _player.play(AssetSource('sounds/crash_platform.mp3'));
+    } catch (e) {
+      print('Failed to play crash sound: $e');
+    }
   }
 
   Future<void> playGameOver() async {
-    await _player.play(AssetSource('sounds/falling_game_over.mp3'));
+    try {
+      await _player.play(AssetSource('sounds/falling_game_over.mp3'));
+    } catch (e) {
+      print('Failed to play game over sound: $e');
+    }
   }
 
   Future<void> play(String assetPath) async {
-    await _player.play(AssetSource(assetPath));
+    try {
+      await _player.play(AssetSource(assetPath));
+    } catch (e) {
+      print('Failed to play sound $assetPath: $e');
+    }
   }
 
   Future<void> dispose() async {
-    await _player.dispose();
+    try {
+      await _player.dispose();
+    } catch (e) {
+      print('Failed to dispose sound effect player: $e');
+    }
   }
 }

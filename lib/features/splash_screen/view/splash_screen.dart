@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants/image_source.dart';
 import '../../leaderboard_screen/view/leaderboard_webview_screen.dart';
+import '../../settings_screen/bloc/settings_bloc.dart';
+import '../../settings_screen/bloc/settings_event.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +17,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    _initializeAudioSafely();
     _navigateAfterDelay();
+  }
+
+  Future<void> _initializeAudioSafely() async {
+    try {
+      // Безопасная инициализация аудио с задержкой
+      await Future.delayed(const Duration(milliseconds: 500));
+      if (mounted) {
+        context.read<SettingsBloc>().add(InitializeMusic());
+      }
+    } catch (e) {
+      print('Failed to initialize audio in splash screen: $e');
+      // Продолжаем работу без аудио
+    }
   }
 
   Future<void> _navigateAfterDelay() async {
